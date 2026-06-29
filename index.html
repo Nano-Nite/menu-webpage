@@ -1,405 +1,425 @@
-<!DOCTYPE html>
+<!doctype html>
+
 <html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CodeLine Café</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>CodeLine Café</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap"
+      rel="stylesheet" />
+    <style>
+      :root {
+        --primary: #0f5132;
+        --secondary: #d4a373;
+        --bg: #f6f3ee;
+        --card: #ffffff;
+        --border: #e7e1d8;
+        --text: #222;
+        --muted: #777;
+      }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-<style>
-:root{
-    --primary:#0f5132;
-    --secondary:#d4a373;
-    --bg:#f6f3ee;
-    --card:#ffffff;
-    --border:#e7e1d8;
-    --text:#222;
-    --muted:#777;
-}
+      body {
+        font-family: "Poppins", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        padding: 30px 15px;
+      }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+      .container {
+        max-width: 1100px;
+        margin: auto;
+      }
 
-body{
-    font-family:'Poppins',sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    padding:30px 15px;
-}
+      .header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
 
-.container{
-    max-width:1100px;
-    margin:auto;
-}
+      .logo {
+        font-size: 3rem;
+        margin-bottom: 10px;
+      }
 
-.header{
-    text-align:center;
-    margin-bottom:30px;
-}
+      .header h1 {
+        color: var(--primary);
+        font-size: 2.5rem;
+        letter-spacing: 2px;
+      }
 
-.logo{
-    font-size:3rem;
-    margin-bottom:10px;
-}
+      .header p {
+        color: var(--muted);
+      }
 
-.header h1{
-    color:var(--primary);
-    font-size:2.5rem;
-    letter-spacing:2px;
-}
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+      }
 
-.header p{
-    color:var(--muted);
-}
+      .panel {
+        background: var(--card);
+        border-radius: 20px;
+        padding: 24px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+        border: 1px solid var(--border);
+      }
 
-.grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:25px;
-}
+      .panel-title {
+        color: var(--primary);
+        font-size: 1.4rem;
+        margin-bottom: 18px;
+        font-weight: 700;
+      }
 
-.panel{
-    background:var(--card);
-    border-radius:20px;
-    padding:24px;
-    box-shadow:0 8px 25px rgba(0,0,0,.05);
-    border:1px solid var(--border);
-}
+      .menu-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
 
-.panel-title{
-    color:var(--primary);
-    font-size:1.4rem;
-    margin-bottom:18px;
-    font-weight:700;
-}
+      .menu-table th {
+        text-align: left;
+        padding: 12px 8px;
+        border-bottom: 2px solid var(--border);
+        color: var(--primary);
+        font-size: 0.95rem;
+      }
 
-.menu-table{
-    width:100%;
-    border-collapse:collapse;
-}
+      .menu-table td {
+        padding: 12px 8px;
+        border-bottom: 1px solid #f0ece6;
+      }
 
-.menu-table th{
-    text-align:left;
-    padding:12px 8px;
-    border-bottom:2px solid var(--border);
-    color:var(--primary);
-    font-size:.95rem;
-}
+      .menu-table tr:last-child td {
+        border-bottom: none;
+      }
 
-.menu-table td{
-    padding:12px 8px;
-    border-bottom:1px solid #f0ece6;
-}
+      .menu-name {
+        font-weight: 500;
+      }
 
-.menu-table tr:last-child td{
-    border-bottom:none;
-}
+      .price {
+        text-align: right;
+        font-weight: 600;
+      }
 
-.menu-name{
-    font-weight:500;
-}
+      .hot {
+        color: #b45309;
+      }
 
-.price{
-    text-align:right;
-    font-weight:600;
-}
+      .cold {
+        color: #2563eb;
+      }
 
-.hot{
-    color:#b45309;
-}
+      .custom-box {
+        background: #faf8f5;
+        border: 1px solid var(--border);
+        border-radius: 15px;
+        padding: 18px;
+        margin-bottom: 15px;
+        width: 100%;
+      }
 
-.cold{
-    color:#2563eb;
-}
+      .custom-box h3 {
+        color: var(--primary);
+        margin-bottom: 10px;
+      }
 
-.custom-box{
-    background:#faf8f5;
-    border:1px solid var(--border);
-    border-radius:15px;
-    padding:18px;
-    margin-bottom:15px;
-    width:100%;
-}
+      .customize-panel {
+        grid-column: 1 / -1;
+      }
 
-.custom-box h3{
-    color:var(--primary);
-    margin-bottom:10px;
-}
+      .option {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
+      }
 
-.customize-panel{
-    grid-column:1 / -1;
-}
+      .option-price {
+        font-weight: 700;
+        color: var(--primary);
+      }
 
-.option{
-    display:flex;
-    justify-content:space-between;
-    padding:8px 0;
-}
+      .note {
+        margin-top: 20px;
+        padding: 15px;
+        background: #fff8e7;
+        border-radius: 12px;
+        font-size: 0.9rem;
+        color: #7a5c1d;
+      }
 
-.option-price{
-    font-weight:700;
-    color:var(--primary);
-}
+      .alert {
+        margin-top: 20px;
+        padding: 15px;
+        background: #ff5e5a;
+        border-radius: 12px;
+        font-size: 0.9rem;
+        color: white;
+      }
 
-.note{
-    margin-top:20px;
-    padding:15px;
-    background:#fff8e7;
-    border-radius:12px;
-    font-size:.9rem;
-    color:#7a5c1d;
-}
+      .footer {
+        margin-top: 25px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
 
-.alert{
-    margin-top:20px;
-    padding:15px;
-    background:#ff5e5a;
-    border-radius:12px;
-    font-size:.9rem;
-    color:white;
-}
+      .price.hot,
+      .price.cold {
+        text-align: right;
+      }
 
-.footer{
-    margin-top:25px;
-    text-align:center;
-    color:var(--muted);
-    font-size:.9rem;
-}
+      .custom-box-panel {
+        display: flex;
+        gap: 20px;
+      }
 
-.price.hot, .price.cold{
-    text-align:right;
-}
+      @media (max-width: 768px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
 
-.custom-box-panel{
-    display:flex;
-    gap:20px;
-}
+        .header h1 {
+          font-size: 2rem;
+        }
 
-@media(max-width:768px){
+        .menu-table {
+          font-size: 0.92rem;
+        }
+      }
 
-    .grid{
-        grid-template-columns:1fr;
-    }
-
-    .header h1{
-        font-size:2rem;
-    }
-
-    .menu-table{
-        font-size:.92rem;
-    }
-}
-</style>
-</head>
-<body>
-
-<div class="container">
-
-    <div class="header">
+      .menu-name {
+        font-weight: 500;
+        line-height: 1.2;
+      }
+      .menu-hint {
+        display: block;
+        margin-top: 3px;
+        font-size: 0.75rem;
+        color: #9a9a9a;
+        font-weight: 400;
+        line-height: 1.35;
+      }
+      .menu-table td {
+        padding: 14px 8px;
+        vertical-align: top;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
         <div class="logo">☕</div>
         <h1>CodeLine Café</h1>
         <p>Fresh Coffee • Non-Coffee • V60 Pour Over</p>
-    </div>
-
-    <div class="grid">
-
+      </div>
+      <div class="grid">
         <!-- MENU -->
         <!-- <div> -->
-
-            <div class="panel">
-                <div class="panel-title">Coffee</div>
-
-                <table class="menu-table">
-                    <thead>
-                        <tr>
-                            <th>Menu</th>
-                            <th class="price hot">Hot</th>
-                            <th class="price cold">Cold</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="menu-name">Double Shot Espresso</td>
-                            <td class="price">8k</td>
-                            <td class="price">-</td>
-                        </tr>
-
-                        <tr>
-                            <td class="menu-name">Long Black / Americano</td>
-                            <td class="price">10k</td>
-                            <td class="price">11k</td>
-                        </tr>
-
-                        <tr>
-                            <td class="menu-name">Kopi Susu Aren</td>
-                            <td class="price">15k</td>
-                            <td class="price">16k</td>
-                        </tr>
-
-                        <tr>
-                            <td class="menu-name">Hazelnut Coffee</td>
-                            <td class="price">15k</td>
-                            <td class="price">16k</td>
-                        </tr>
-
-                        <tr>
-                            <td class="menu-name">Butterscotch Coffee</td>
-                            <td class="price">15k</td>
-                            <td class="price">16k</td>
-                        </tr>
-
-                        <tr>
-                            <td class="menu-name">Caramel Macchiato</td>
-                            <td class="price">-</td>
-                            <td class="price">19k</td>
-                        </tr>
-
-                        <tr>
-                            <td class="menu-name">Dalgona Coffee</td>
-                            <td class="price">-</td>
-                            <td class="price">13k</td>
-                        </tr>
-
-                        <tr>
-                            <td class="menu-name">V60 Arabica Gayo Wine</td>
-                            <td class="price">-</td>
-                            <td class="price">16k</td>
-                        </tr>
-
-                        <tr>
-                            <td class="menu-name">Spanish Ice Latte</td>
-                            <td class="price">14k</td>
-                            <td class="price">15k</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            
-
-            <div class="panel">
-                <div class="panel-title">Non-Coffee</div>
-
-                <table class="menu-table">
-                    <thead>
-                        <tr>
-                            <th>Menu</th>
-                            <th class="price hot">Hot</th>
-                            <th class="price cold">Cold</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        <tr>
-                            <td class="menu-name">Green Tea</td>
-                            <td class="price">-</td>
-                            <td class="price">10k</td>
-                        </tr>
-
-                        <tr>
-                            <td class="menu-name">Matcha Latte</td>
-                            <td class="price">11k</td>
-                            <td class="price">12k</td>
-                        </tr>
-
-                        <tr>
-                            <td class="menu-name">Thai Tea</td>
-                            <td class="price">-</td>
-                            <td class="price">10k</td>
-                        </tr>
-
-                        <tr>
-                            <td class="menu-name">Thai Tea Latte</td>
-                            <td class="price">11k</td>
-                            <td class="price">12k</td>
-                        </tr>
-
-                        <tr>
-                            <td class="menu-name">Moringa Aren Latte</td>
-                            <td class="price">11k</td>
-                            <td class="price">12k</td>
-                        </tr>
-
-                        <tr>
-                            <td class="menu-name">Signature Dark Choco</td>
-                            <td class="price">11k</td>
-                            <td class="price">12k</td>
-                        </tr>
-
-                    </tbody>
-                </table>
-            </div>
-
+        <div class="panel">
+          <div class="panel-title">Coffee</div>
+          <table class="menu-table">
+            <thead>
+              <tr>
+                <th>Menu</th>
+                <th class="price hot">Hot</th>
+                <th class="price cold">Cold</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="menu-name">
+                  Long Black / Americano<span class="menu-hint"
+                    >Espresso with hot or iced water.</span
+                  >
+                </td>
+                <td class="price">10k</td>
+                <td class="price">11k</td>
+              </tr>
+              <tr>
+                <td class="menu-name">
+                  Kopi Susu Aren<span class="menu-hint"
+                    >Espresso, fresh milk &amp; palm sugar.</span
+                  >
+                </td>
+                <td class="price">15k</td>
+                <td class="price">16k</td>
+              </tr>
+              <tr>
+                <td class="menu-name">
+                  Hazelnut Coffee<span class="menu-hint"
+                    >Nutty sweetness with creamy coffee.</span
+                  >
+                </td>
+                <td class="price">15k</td>
+                <td class="price">16k</td>
+              </tr>
+              <tr>
+                <td class="menu-name">
+                  Butterscotch Coffee<span class="menu-hint"
+                    >Creamy caramel butter flavor.</span
+                  >
+                </td>
+                <td class="price">15k</td>
+                <td class="price">16k</td>
+              </tr>
+              <tr>
+                <td class="menu-name">
+                  Caramel Macchiato<span class="menu-hint"
+                    >Vanilla milk, espresso &amp; caramel drizzle.</span
+                  >
+                </td>
+                <td class="price">-</td>
+                <td class="price">19k</td>
+              </tr>
+              <tr>
+                <td class="menu-name">
+                  Dalgona Coffee<span class="menu-hint"
+                    >Whipped coffee over fresh milk.</span
+                  >
+                </td>
+                <td class="price">-</td>
+                <td class="price">13k</td>
+              </tr>
+              <tr>
+                <td class="menu-name">
+                  V60 Arabica Gayo Wine<span class="menu-hint"
+                    >Floral, winey &amp; fruity pour over.</span
+                  >
+                </td>
+                <td class="price">-</td>
+                <td class="price">16k</td>
+              </tr>
+              <tr>
+                <td class="menu-name">
+                  Spanish Ice Latte<span class="menu-hint"
+                    >Creamy latte with condensed milk.</span
+                  >
+                </td>
+                <td class="price">14k</td>
+                <td class="price">15k</td>
+              </tr>
+              <tr>
+                <td class="menu-name">
+                  Dirty Matcha<span class="menu-hint"
+                    >Premium matcha with espresso shot.</span
+                  >
+                </td>
+                <td class="price">18k</td>
+                <td class="price">19k</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="panel">
+          <div class="panel-title">Non-Coffee</div>
+          <table class="menu-table">
+            <thead>
+              <tr>
+                <th>Menu</th>
+                <th class="price hot">Hot</th>
+                <th class="price cold">Cold</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="menu-name">
+                  Green Tea<span class="menu-hint"
+                    >Refreshing lightly sweet green tea.</span
+                  >
+                </td>
+                <td class="price">-</td>
+                <td class="price">10k</td>
+              </tr>
+              <tr>
+                <td class="menu-name">
+                  Matcha Latte<span class="menu-hint"
+                    >Creamy Japanese matcha latte.</span
+                  >
+                </td>
+                <td class="price">11k</td>
+                <td class="price">12k</td>
+              </tr>
+              <tr>
+                <td class="menu-name">
+                  Thai Tea<span class="menu-hint"
+                    >Authentic Thai tea with aromatic spices.</span
+                  >
+                </td>
+                <td class="price">-</td>
+                <td class="price">10k</td>
+              </tr>
+              <tr>
+                <td class="menu-name">
+                  Thai Tea Latte<span class="menu-hint"
+                    >Thai tea blended with creamy milk.</span
+                  >
+                </td>
+                <td class="price">11k</td>
+                <td class="price">12k</td>
+              </tr>
+              <tr>
+                <td class="menu-name">
+                  Moringa Aren Latte<span class="menu-hint"
+                    >Moringa, milk &amp; palm sugar.</span
+                  >
+                </td>
+                <td class="price">11k</td>
+                <td class="price">12k</td>
+              </tr>
+              <tr>
+                <td class="menu-name">
+                  Signature Dark Choco<span class="menu-hint"
+                    >Rich Belgian-style dark chocolate.</span
+                  >
+                </td>
+                <td class="price">11k</td>
+                <td class="price">12k</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <!-- </div> -->
-
-        
-    </div>
-
-    <div style="height:20px;"></div>
-    <!-- CUSTOMIZE -->
-    <div>
-
+      </div>
+      <div style="height: 20px"></div>
+      <!-- CUSTOMIZE -->
+      <div>
         <div class="panel customize-panel">
-
-            <div class="panel-title">Customize</div>
-
-            <div class="custom-box-panel">
-                <div class="custom-box">
-                    <h3>🥛 Milk Option</h3>
-    
-                    <div class="option">
-                        <span>Oat Milk</span>
-                        <span class="option-price">+2k</span>
-                    </div>
-                </div>
-    
-                <div class="custom-box">
-                    <h3>📏 Size Upgrade</h3>
-    
-                    <div class="option">
-                        <span>Upsize 16oz</span>
-                        <span class="option-price">+4k</span>
-                    </div>
-                </div>
-    
-                <!-- <div class="custom-box">
-                    <h3>☕ Available Hot & Cold</h3>
-    
-                    <div class="option">
-                        <span>Regular Size</span>
-                        <span>12oz</span>
-                    </div>
-    
-                    <div class="option">
-                        <span>Large Size</span>
-                        <span>16oz</span>
-                    </div>
-                </div> -->
-    
-                
+          <div class="panel-title">Customize</div>
+          <div class="custom-box-panel">
+            <div class="custom-box">
+              <h3>🥛 Milk Option</h3>
+              <div class="option">
+                <span>Oat Milk</span>
+                <span class="option-price">+2k</span>
+              </div>
             </div>
-            
-            
+            <div class="custom-box">
+              <h3>📏 Size Upgrade</h3>
+              <div class="option">
+                <span>Upsize 16oz</span>
+                <span class="option-price">+4k</span>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="note">
-            Harga dalam ribuan rupiah (k).<br>
-            Beberapa menu hanya tersedia dalam varian Hot atau Cold.<br><br>
+          Harga dalam ribuan rupiah (k).<br />
+          Beberapa menu hanya tersedia dalam varian Hot atau Cold.<br /><br />
         </div>
         <div class="alert">
-            Delivery Order (DO) disekitar area CodeLine Café gratis ongkir. Selain itu, ada biaya tambahan untuk lokasi yang lebih jauh.
+          Delivery Order (DO) disekitar area CodeLine Café gratis ongkir. Selain
+          itu, ada biaya tambahan untuk lokasi yang lebih jauh.
         </div>
-
+      </div>
+      <div class="footer">© 2026 CodeLine Café. All rights reserved.</div>
     </div>
-
-    <div class="footer">
-        © 2026 CodeLine Café. All rights reserved.
-    </div>
-
-</div>
-
-</body>
+  </body>
 </html>
