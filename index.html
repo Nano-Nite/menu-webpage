@@ -32,6 +32,10 @@
         padding: 30px 15px;
       }
 
+      html {
+        scroll-behavior: smooth;
+      }
+
       .container {
         max-width: 1100px;
         margin: auto;
@@ -69,6 +73,15 @@
         padding: 24px;
         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
         border: 1px solid var(--border);
+
+        opacity: 0;
+        transform: translateY(30px);
+        transition: 0.6s ease;
+      }
+
+      .panel.show {
+        opacity: 1;
+        transform: translateY(0);
       }
 
       .panel-title {
@@ -181,6 +194,14 @@
         gap: 20px;
       }
 
+      .icon {
+        width: 32px;
+      }
+
+      .logo {
+        width: 40%;
+      }
+
       @media (max-width: 768px) {
         .grid {
           grid-template-columns: 1fr;
@@ -211,19 +232,68 @@
         padding: 14px 8px;
         vertical-align: top;
       }
+      
+      .quick-nav {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin: 25px 0;
+        position: sticky;
+        top: 0px;
+        z-index: 100;
+
+        background: rgba(246, 243, 238, 0);
+        backdrop-filter: blur(8px);
+        padding: 10px;
+        /* border-radius: 999px; */
+      }
+
+      .quick-nav a {
+        text-decoration: none;
+        background: white;
+        color: var(--primary);
+        border: 1px solid var(--border);
+        padding: 10px 18px;
+        border-radius: 999px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: 0.25s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      }
+
+      .quick-nav a:hover {
+        background: var(--primary);
+        color: white;
+        transform: translateY(-2px);
+      }
+
+      #coffee,
+      #noncoffee,
+      #customize {
+        scroll-margin-top: 90px;
+      }
     </style>
   </head>
   <body>
     <div class="container">
       <div class="header">
-        <div class="logo">☕</div>
+        <div>
+          <img src="icon/logo.png" alt="Logo" class="logo" />
+        </div>
         <h1>CodeLine Café</h1>
         <p>Fresh Coffee • Non-Coffee • V60 Pour Over</p>
+      </div>
+      <div class="quick-nav">
+        <a href="#coffee">Coffee</a>
+        <a href="#noncoffee">Non-Coffee</a>
+        <a href="#customize">Customize</a>
+        <!-- <a href="#dessert">Dessert</a> -->
       </div>
       <div class="grid">
         <!-- MENU -->
         <!-- <div> -->
-        <div class="panel">
+        <div class="panel" id="coffee">
           <div class="panel-title">Coffee</div>
           <table class="menu-table">
             <thead>
@@ -231,6 +301,7 @@
                 <th>Menu</th>
                 <th class="price hot">Hot</th>
                 <th class="price cold">Cold</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -242,6 +313,7 @@
                 </td>
                 <td class="price">10k</td>
                 <td class="price">11k</td>
+                <td></td>
               </tr>
               <tr>
                 <td class="menu-name">
@@ -251,6 +323,9 @@
                 </td>
                 <td class="price">15k</td>
                 <td class="price">16k</td>
+                <td>
+                  <img src="icon/best-seller.png" alt="Icon" class="icon" />
+                </td>
               </tr>
               <tr>
                 <td class="menu-name">
@@ -260,6 +335,7 @@
                 </td>
                 <td class="price">15k</td>
                 <td class="price">16k</td>
+                <td></td>
               </tr>
               <tr>
                 <td class="menu-name">
@@ -269,6 +345,9 @@
                 </td>
                 <td class="price">15k</td>
                 <td class="price">16k</td>
+                <td>
+                  <img src="icon/best-seller.png" alt="Icon" class="icon" />
+                </td>
               </tr>
               <tr>
                 <td class="menu-name">
@@ -278,6 +357,7 @@
                 </td>
                 <td class="price">-</td>
                 <td class="price">19k</td>
+                <td></td>
               </tr>
               <tr>
                 <td class="menu-name">
@@ -287,6 +367,7 @@
                 </td>
                 <td class="price">-</td>
                 <td class="price">13k</td>
+                <td></td>
               </tr>
               <tr>
                 <td class="menu-name">
@@ -296,6 +377,7 @@
                 </td>
                 <td class="price">-</td>
                 <td class="price">16k</td>
+                <td></td>
               </tr>
               <tr>
                 <td class="menu-name">
@@ -305,6 +387,7 @@
                 </td>
                 <td class="price">14k</td>
                 <td class="price">15k</td>
+                <td></td>
               </tr>
               <tr>
                 <td class="menu-name">
@@ -314,11 +397,12 @@
                 </td>
                 <td class="price">18k</td>
                 <td class="price">19k</td>
+                <td></td>
               </tr>
             </tbody>
           </table>
         </div>
-        <div class="panel">
+        <div class="panel" id="noncoffee">
           <div class="panel-title">Non-Coffee</div>
           <table class="menu-table">
             <thead>
@@ -326,6 +410,7 @@
                 <th>Menu</th>
                 <th class="price hot">Hot</th>
                 <th class="price cold">Cold</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -337,6 +422,7 @@
                 </td>
                 <td class="price">-</td>
                 <td class="price">10k</td>
+                <td></td>
               </tr>
               <tr>
                 <td class="menu-name">
@@ -346,6 +432,9 @@
                 </td>
                 <td class="price">11k</td>
                 <td class="price">12k</td>
+                <td>
+                  <img src="icon/best-seller.png" alt="Icon" class="icon" />
+                </td>
               </tr>
               <tr>
                 <td class="menu-name">
@@ -355,6 +444,7 @@
                 </td>
                 <td class="price">-</td>
                 <td class="price">10k</td>
+                <td></td>
               </tr>
               <tr>
                 <td class="menu-name">
@@ -364,6 +454,7 @@
                 </td>
                 <td class="price">11k</td>
                 <td class="price">12k</td>
+                <td></td>
               </tr>
               <tr>
                 <td class="menu-name">
@@ -373,6 +464,7 @@
                 </td>
                 <td class="price">11k</td>
                 <td class="price">12k</td>
+                <td></td>
               </tr>
               <tr>
                 <td class="menu-name">
@@ -382,6 +474,9 @@
                 </td>
                 <td class="price">11k</td>
                 <td class="price">12k</td>
+                <td>
+                  <img src="icon/best-seller.png" alt="Icon" class="icon" />
+                </td>
               </tr>
             </tbody>
           </table>
@@ -391,7 +486,7 @@
       <div style="height: 20px"></div>
       <!-- CUSTOMIZE -->
       <div>
-        <div class="panel customize-panel">
+        <div class="panel customize-panel" id="customize">
           <div class="panel-title">Customize</div>
           <div class="custom-box-panel">
             <div class="custom-box">
@@ -421,5 +516,24 @@
       </div>
       <div class="footer">© 2026 CodeLine Café. All rights reserved.</div>
     </div>
+
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("show");
+            }
+          });
+        },
+        {
+          threshold: 0.15,
+        },
+      );
+
+      document.querySelectorAll(".panel").forEach((panel) => {
+        observer.observe(panel);
+      });
+    </script>
   </body>
 </html>
